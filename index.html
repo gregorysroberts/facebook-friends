@@ -28,7 +28,7 @@
         <option value='current_location.state'>State</option>
         <option value='current_location.country'>Country</option>
     </select>
-    <select class="input-medium">
+    <select class="input-medium" ng-model='reverse'>
         <option value="false">Descending</option>
         <option value="true">Ascending</option>
     </select>
@@ -36,7 +36,7 @@
 </form>
 
   <ul>
-    <li class='friend' ng-repeat='friend in friends | filter:searchText | orderBy:sortField'>
+    <li class='friend' ng-repeat='friend in friends | filter:searchText | orderBy:sortField:reverse'>
        <img class="profile-pic" ng-src='{{friend.pic_square}}'>
       <h3>{{friend.name}}</h3>
       <div class="location" ng-show='friend.current_location.city'>
