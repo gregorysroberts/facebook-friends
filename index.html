@@ -39,17 +39,17 @@
 </form>
 
   <ul>
-    <li class='friend'>
-       <img class="profile-pic" ng-src='{{pictureURL}}'>
-      <h3>{{name}}</h3>
+    <li class='friend' ng-repeat='friend in friends'>
+       <img class="profile-pic" ng-src='{{friend.pic_square}}'>
+      <h3>{{friend.name}}</h3>
       <div class="location">
-        Location: {{location}}
+        Location: {{friend.current_location.city}}, {{friend.current_location.state}}
       </div>      
       <div class="status">
-        Status:  {{status}} <span class="hashtag">#ihateprovo</span>
+        Status:  {{friend.status.message}} 
       </div>      
       <div class="num-friends">
-        Friends: {{friendCount}}
+        Friends: {{friend.friend_count}}
       </div>
     </li>
   </ul>
