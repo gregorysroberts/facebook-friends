@@ -17,13 +17,10 @@
 
 <form class="form-inline searchForm" role="form">
   <div class="form-group">
+   
+    <input class="form-control" ng-model="q.name" placeholder="Search Your Friends' Name" >
+    <input class="form-control" ng-model="q.current_location" placeholder="Search Your Freinds' Location" > 
 
-  <input class="form-control" placeholder="Search Anything About Your Friends" >
-  <!-- The stuff below is For step 5....get rid of the one above if you wish-->
-<!--    
-    <input class="form-control" placeholder="Search Your Friends' Name" >
-    <input class="form-control" placeholder="Search Your Freinds' Location" > 
- -->
     <select class="input-medium">
         <option>Name</option>
         <option># friends</option>
@@ -39,17 +36,20 @@
 </form>
 
   <ul>
-    <li class='friend' ng-repeat='friend in friends'>
+    <li class='friend' ng-repeat='friend in friends | filter:q'>
        <img class="profile-pic" ng-src='{{friend.pic_square}}'>
       <h3>{{friend.name}}</h3>
-      <div class="location">
+      <div class="location" ng-show='friend.current_location.city'>
         Location: {{friend.current_location.city}}, {{friend.current_location.state}}
       </div>      
-      <div class="status">
+      <div class="status" ng-show='friend.status.message'>
         Status:  {{friend.status.message}} 
       </div>      
-      <div class="num-friends">
+      <div class="num-friends" ng-show='friend.friend_count'>
         Friends: {{friend.friend_count}}
+      </div>
+      <div class="num-friends" ng-hide='friend.friend_count'>
+        Friends: none
       </div>
     </li>
   </ul>
